@@ -1,0 +1,29 @@
+{% for publication in publications %}
+    {% set publication_path = path('app_publication', { 'publication_id': publication.id}) %}
+
+    <div class="publication-thumb">
+        <h3><a href="{{ publication_path }}">
+                {{ publication.title }}
+            </a>
+        </h3>
+        
+        <div>
+            <p>
+                Publié par <strong>{{ publication.author }}</strong>,
+                le <em>{{ publication.publishedAt|date('d/m/Y') }}</em>.
+            </p>
+            <p>
+                {{ publication.content }}
+            </p>
+            <p>
+                <!-- Lien vers le détail de la publication -->
+                <a href="{{ publication_path }}"
+                   class="btn btn-sm btn-default">
+                    Lire la publication
+                </a>
+            </p>
+        </div>
+    </div>
+
+    {% if not loop.last %}<hr>{% endif %}
+{% endfor %}

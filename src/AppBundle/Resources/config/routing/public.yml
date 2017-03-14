@@ -1,0 +1,19 @@
+app_home:
+    path: /
+    defaults: { _controller: AppBundle:App:home }
+
+science_list:
+    path:    /sciences
+    defaults: { _controller: "AppBundle:App:scienceList"}
+
+science_detail:
+    path:    /sciences/{scienceId}
+    defaults: { _controller: "AppBundle:App:scienceDetail"}
+
+publication_detail:
+    path:     /sciences/{scienceId}/{publicationId}
+    defaults: { _controller: "AppBundle:App:publicationDetail" }
+
+publication_new:
+    path:     /publier
+    defaults: { _controller: "AppBundle:App:publicationNew"}

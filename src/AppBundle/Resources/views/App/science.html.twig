@@ -1,0 +1,63 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <div class="container">
+
+        <!-- Science -->
+
+        <div class="science-thumb">
+            <h1>{{science.title}}</h1>
+            <div>
+                <p>
+                    {{science.description}}
+                </p>
+                <p>
+                    <!-- Lien vers la liste des sciences -->
+                    <a href="{{ path('science_list') }}"
+                       class="btn btn-sm btn-default">
+                        Retour à la liste des sciences
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <h2>Publications de la science &laquo;{{science.title}}&raquo;</h2>
+    <hr>
+
+    <!-- Liste des publications validées pour cette science -->
+    {% for publication in publications %}
+
+    <div class="publication-thumb">
+        <h3><!-- titre publication --></h3>
+        <div>
+            <p>
+                Publié par <strong>{{publication.author}}</strong>,
+                le <em>{{publication.publishedAt|date('d/m/Y')}}</em>.
+            </p>
+            <p>
+                {{publication.description}}
+            </p>
+            <p>
+                <!-- Lien vers le détail de la publication -->
+                <a href="{{path('publication_detail',
+                 {'publicationId': publication.id,
+                 'scienceId': science.id})}}"
+                   class="btn btn-sm btn-default">
+                    Lire la publication
+                </a>
+            </p>
+        </div>
+    </div>
+
+    {% if not loop.last %}<hr>{% endif %}
+    {% endfor %}
+
+</div>
+
+{% endblock %}
